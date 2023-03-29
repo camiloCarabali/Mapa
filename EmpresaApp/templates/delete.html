@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Eliminar Empresa</h2>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ empresa.nombre }}</h5>
+      <p class="card-text">{{ empresa.descripcion }}</p>
+      <p class="card-text">{{ empresa.fecha }}</p>
+      <p class="card-text">{{ empresa.ubicacion }}</p>
+      <p class="card-text">{{ empresa.especializacion }}</p>
+      <p class="card-text">{{ empresa.contacto }}</p>
+      <p class="card-text">{{ empresa.pagina }}</p>
+      <form method="POST" action="{% url 'delete_empresa' empresa.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

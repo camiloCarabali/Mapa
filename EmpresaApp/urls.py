@@ -1,8 +1,12 @@
 #from django.conf.urls import url
-from django.urls import re_path
+from django.urls import path
 from EmpresaApp import views
 
 urlpatterns = [
-    re_path(r'^empresa$', views.EmpresaApi),
-    re_path(r'^empresa/([0-9])$', views.EmpresaApi)
+    path('', views.mostrarEmpresa),
+    path('creacionEmpresa/', views.creacionEmpresa),
+    path('crearEmpresa/', views.crearEmpresa),
+    path('actualizacionEmpresa/<id>', views.actualizacionEmpresa),
+    path('actualizarEmpresa/<id>', views.actualizarEmpresa),
+    path('eliminarEmpresa/<id>', views.eliminarEmpresa),
 ]

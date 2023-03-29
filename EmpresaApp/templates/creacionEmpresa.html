@@ -1,0 +1,38 @@
+{% block content %}
+  <h2>Crear Empresa</h2>
+  <form method="POST" action="/crearEmpresa/">{% csrf_token %}
+    <div class="form-group">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" id="nombre" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Descripción:</label>
+      <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Fecha de Fundación:</label>
+      <input type="date" name="fecha" id="fecha" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Ubicación:</label>
+      <input type="text" name="ubicacion" id="ubicacion" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>telefono:</label>
+      <input type="text" name="telefono" id="telefono" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>email:</label>
+      <input type="email" name="email" id="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>pagina Web:</label>
+      <input type="text" name="paginaWeb" id="paginaWeb" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </form>
+{%endblock%}
