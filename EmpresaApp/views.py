@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from datetime import datetime
 
-from EmpresaApp.models import Empresas
+from EmpresaApp.models import Empresas, Ciudad
 from EmpresaApp.serializers import EmpresaSerializer
 
 
@@ -14,7 +15,8 @@ def mostrarEmpresa(request):
 
 
 def creacionEmpresa(request):
-    return render(request, "creacionEmpresa.html")
+    ciudades = Ciudad.objects.all()
+    return render(request, "creacionEmpresa.html", {"ciudades": ciudades})
 
 
 def crearEmpresa(request):
@@ -26,18 +28,20 @@ def crearEmpresa(request):
     email = request.POST['email']
     paginaWeb = request.POST['paginaWeb']
 
-    empresa = Empresas.objects.create(nombre=nombre, descripcion=descripcion, ubicacion=ubicacion, telefono=telefono,
+    ciudad = Ciudad.objects.get(nombre=ubicacion)
+
+    empresa = Empresas.objects.create(nombre=nombre, descripcion=descripcion, ubicacion=ciudad, telefono=telefono,
                                       fechaFundacion=fechaFundacion, email=email, paginaWeb=paginaWeb)
     return redirect('/')
 
 
 def actualizacionEmpresa(request, id):
     empresa = Empresas.objects.get(id=id)
-    return render(request, "actualizacionEmpresa.html", {"empresa": empresa})
+    ciudades = Ciudad.objects.all()
+    return render(request, "actualizacionEmpresa.html", {"empresa": empresa, 'ciudades': ciudades})
 
 
 def actualizarEmpresa(request, id):
-    print(id)
     nombre = request.POST['nombre']
     descripcion = request.POST['descripcion']
     ubicacion = request.POST['ubicacion']
@@ -45,7 +49,6 @@ def actualizarEmpresa(request, id):
     fechaFundacion = request.POST['fecha']
     email = request.POST['email']
     paginaWeb = request.POST['paginaWeb']
-
 
     empresa = Empresas.objects.get(id=id)
     empresa.nombre = nombre
@@ -56,6 +59,7 @@ def actualizarEmpresa(request, id):
     empresa.email = email
     empresa.paginaWeb = paginaWeb
     empresa.save()
+
     return redirect('/')
 
 
@@ -63,3 +67,8 @@ def eliminarEmpresa(request, id):
     empresa = Empresas.objects.get(id=id)
     empresa.delete()
     return redirect('/')
+
+
+def mostrarCiudad(request):
+    ciudades = Ciudad.objects.all()
+    return render(request, "actualizacionEmpresa.html", {"ciudades": ciudades})
