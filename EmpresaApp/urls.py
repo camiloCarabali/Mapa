@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.mostrarEmpresa),
     path('creacionEmpresa/', views.creacionEmpresa),
     path('crearEmpresa/', views.crearEmpresa),
-    path('actualizacionEmpresa/<id>', views.actualizacionEmpresa),
-    path('actualizarEmpresa/<id>', views.actualizarEmpresa),
-    path('eliminarEmpresa/<id>', views.eliminarEmpresa),
+    path('actualizacionEmpresa/<NIT>', views.actualizacionEmpresa),
+    path('actualizarEmpresa/<NIT>', views.actualizarEmpresa),
+    path('inactivarEmpresa/<NIT>', views.inactivarEmpresa),
 ]

@@ -7,7 +7,7 @@
 
                     <h2 class="card-title">Actualizar Empresa</h2>
                     <table>
-                        <form method="POST" action="/actualizarEmpresa/{{empresa.id}}">
+                        <form method="POST" action="/actualizarEmpresa/{{empresa.NIT}}">
                             {% csrf_token %}
                             <tr>
                                 <td><label>Nombre:</label></td>
@@ -24,18 +24,20 @@
                             <tr>
                                 <td><label>Fecha de fundación:</label></td>
                                 <td><input type="date" class="form-control" id="fecha" name="fecha"
-                                           value="{{ empresa.fechaFundacion }}"></td>
+                                           max="{% now 'Y-m-d' %}" value="{{ empresa.fechaFundacion|date:"Y-m-d" }}"></td>
                             </tr>
                             <br>
                             <tr>
                                 <td><label>Ubicación:</label></td>
-                                <td>
-                                    <select name="select" class="form-control">
-                                    {% for ciudad in ciudades %}
-                                    <option value="{{ ciudad.id }}">{{ ciudad.nombre }}</option>
-                                    {% endfor %}
-                                    </select>
-                                </td>
+                                <td><select name="ubicacion" id="ubicacion" class="form-control">
+                                        {% for ciudad in ciudades %}
+                                            {% if ciudad.id == empresa.ubicacion.id %}
+                                                <option value="{{ ciudad.nombre }}" selected>{{ ciudad.nombre }}</option>
+                                            {% else %}
+                                                <option value="{{ ciudad.nombre }}">{{ ciudad.nombre }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>   </td>
                             </tr>
                             <br>
                             <tr>
@@ -66,144 +68,174 @@
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
+    {% block styles %}
+    <style>
+   
 
-{% block styles %}
-<style>
     /* Estilos para la tarjeta */
     .card {
-      border: none;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    .card-header {
-      background-color: #f5f5f5;
-      border-bottom: 1px solid #e5e5e5;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .card-header .card-title {
-      margin-bottom: 0;
-    }
-    .card-header .btn {
-      margin-left: auto;
-    }
-    .card-body {
-      padding: 0;
-    }
-
-    /* Estilos para la tabla */
-    .table {
-      margin: 0;
-    }
-    .table thead th {
-      font-weight: bold;
-      border-top: none;
-    }
-    .table tbody tr {
-      border-top: 1px solid #e5e5e5;
-    }
-    .table tbody td {
-      border-top: none;
-      padding: 1rem;
-    }
-    .table tbody tr:last-child td {
-      border-bottom: 1px solid #e5e5e5;
-    }
-    .table-responsive {
-  overflow-x: auto;
+  width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 0 auto;
 }
 
-/* Estilos para los botones de acción */
-.btn-primary,
-.btn-danger {
-  color: #fff;
+.card-body {
+  padding: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 30px;
+}
+
+label {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-control:focus {
+  outline: none;
+  border: 1px solid #4e73df;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #4e73df;
+  color: #fff;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los botones */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #4e73df;
+  color: #fff;
 }
 
 .btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-.btn-primary:hover,
-.btn-danger:hover {
+  background-color: #e74a3b;
   color: #fff;
-}
-
-.btn-primary:focus,
-.btn-danger:focus {
-  box-shadow: none;
-}
-
-.btn-primary:not(:disabled):not(.disabled).active,
-.btn-primary:not(:disabled):not(.disabled):active,
-.show > .btn-primary.dropdown-toggle {
-  background-color: #0069d9;
-  border-color: #0062cc;
-}
-
-.btn-danger:not(:disabled):not(.disabled).active,
-.btn-danger:not(:disabled):not(.disabled):active,
-.show > .btn-danger.dropdown-toggle {
-  background-color: #c82333;
-  border-color: #bd2130;
-}
-
-.btn-primary.disabled,
-.btn-primary:disabled {
-  background-color: #007bff;
-  border-color: #007bff;
-  opacity: 0.65;
-}
-
-.btn-danger.disabled,
-.btn-danger:disabled {
-  background-color: #dc3545;
-  border-color: #dc3545;
-  opacity: 0.65;
-}
-
-.btn-sm {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.2rem;
 }
 
 .btn-success {
+  background-color: #1cc88a;
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
 }
 
-.btn-success:hover {
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para las sombras */
+.shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para las líneas divisoras */
+.divider {
+  border-bottom: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+/* Estilos para los bordes circulares */
+.rounded {
+  border-radius: 30px;
+}
+
+/* Estilos para los colores de las etiquetas */
+.label {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  margin-right: 10px;
+}
+
+.label-primary {
+  background-color: #4e73df;
   color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
 }
 
-.btn-success:focus {
-  box-shadow: none;
+.label-danger {
+  background-color: #e74a3b;
+  color: #fff;
 }
 
-.btn-success.disabled,
-.btn-success:disabled {
-  background-color: #28a745;
-  border-color: #28a745;
-  opacity: 0.65;
+.label-success {
+  background-color: #1cc88a;
+  color: #fff;
 }
 
-.btn-success:not(:disabled):not(.disabled).active,
-.btn-success:not(:disabled):not(.disabled):active,
-.show > .btn-success.dropdown-toggle {
-  background-color: #1e7e34;
-  border-color: #1c7430;
-}
 </style>
-
 {% endblock %}
+
