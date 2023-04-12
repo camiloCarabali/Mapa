@@ -1,0 +1,16 @@
+hay una foto del mapa de cali o la tabla, 
+es para que la profesora vea un ejemplo
+de como quedaria con el producto completo,
+funciona el editar,borrar y agregar una empresa,
+se soluciono el problema de la fechas,
+
+
+falta:
+esta modelado con una base de datos igual a la original, 
+solo es cambiar la base de datos en el settings.
+
+mover el css de inicio a un .css
+y borrar los styles de las demas html
+ ya que todos los style son iguales.
+
+
