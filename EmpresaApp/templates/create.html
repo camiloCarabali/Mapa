@@ -1,3 +1,6 @@
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloCrear.css' %}">
+
 {% block content %}
 <div style="text-align:center">
     <div style="display:flex; flex-direction:column; align-items:center;">
@@ -19,7 +22,7 @@
                                 <label>Nombre de la empresa</label>
                                 <input autocomplete="off" type="text" name="nombre" id="nombre" class="form-control">
                             </div>
-                         
+
                             <div class="form-group">
                               <label>Ubicación de la empresa</label>
                               <select name="ubicacion" id="ubicacion" class="form-control">
@@ -42,8 +45,8 @@
                           <div class="form-group">
                             <label>Descripción de la empresa</label>
                             <textarea autocomplete="off" name="descripcion" id="descripcion" class="form-control"></textarea>
-                        </div> 
-                         
+                        </div>
+
                             <div class="form-group">
                                 <label>contacto de la empresa</label>
                                 <input autocomplete="off" type="text" name="telefono" id="telefono" class="form-control">
@@ -65,170 +68,4 @@
 </div>
 {% endblock %}
 
-{% block styles %}
-<style>
-    /* Estilos para la tarjeta */
-    .card {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        margin: 0 auto;
-    }
-
-.card-body {
-  padding: 20px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-h2 {
-  font-family: Arial, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 30px;
-}
-
-label {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.form-control {
-  width: 100%;
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
-}
-
-.form-control:focus {
-  outline: none;
-  border: 1px solid #4e73df;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
-}
-
-.btn-primary {
-  background-color: #4e73df;
-  color: #fff;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilos para los botones */
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
-}
-
-.btn-primary {
-  background-color: #4e73df;
-  color: #fff;
-}
-
-.btn-danger {
-  background-color: #e74a3b;
-  color: #fff;
-}
-
-.btn-success {
-  background-color: #1cc88a;
-  color: #fff;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilos para las sombras */
-.shadow {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilos para las líneas divisoras */
-.divider {
-  border-bottom: 1px solid #ddd;
-  margin: 20px 0;
-}
-
-/* Estilos para los bordes circulares */
-.rounded {
-  border-radius: 30px;
-}
-
-/* Estilos para los colores de las etiquetas */
-.label {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  margin-right: 10px;
-}
-
-.label-primary {
-  background-color: #4e73df;
-  color: #fff;
-}
-
-.label-danger {
-  background-color: #e74a3b;
-  color: #fff;
-}
-
-.label-success {
-  background-color: #1cc88a;
-  color: #fff;
-}
-
-</style>
-{% endblock %}
 

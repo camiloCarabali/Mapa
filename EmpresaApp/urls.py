@@ -3,8 +3,13 @@ from django.urls import path
 from EmpresaApp import views
 
 urlpatterns = [
-    path('', views.mostrarEmpresa),
-    path('creacionEmpresa/', views.creacionEmpresa),
+    path('', views.vistaBase, name='inicio'),
+    path('registro/', views.registro, name='registro'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('home/', views.vistaInicioU, name='home'),
+    path('empresa/', views.mostrarEmpresa, name='empresa'),
+    path('creacionEmpresa/', views.creacionEmpresa, name='crear'),
     path('crearEmpresa/', views.crearEmpresa),
     path('actualizacionEmpresa/<NIT>', views.actualizacionEmpresa),
     path('actualizarEmpresa/<NIT>', views.actualizarEmpresa),

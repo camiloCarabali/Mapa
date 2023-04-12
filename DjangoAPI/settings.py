@@ -7,6 +7,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os.path
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,7 +81,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'CLIENT': {
             "host": "mongodb+srv://admin:RkMkDwBMOOAUXAA5@cluster0.kf3uipy.mongodb.net/?retryWrites=true&w=majority"
-            ,"name": "dbTest",
+            ,"name": "BDSystem",
             "authMechanism": "SCRAM-SHA-1"
         },
     }
@@ -123,10 +124,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-MIGRATION_MODULES = {'django.contrib.admin': None}

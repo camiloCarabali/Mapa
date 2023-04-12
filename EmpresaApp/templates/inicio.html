@@ -1,378 +1,87 @@
-{% block content %}
-
-<!--crea una tabla responsiva que contiene todos los datos de la empresa  junto con las etiquetas y los botones de editar y eliminar-->
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Empresas</h4>
-          <a href="creacionEmpresa/" class="btn btn-success">Agregar Empresa</a>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>NIT</th>
-                  <th>Nombre</th>
-                  <th>Descripción</th>
-                  <th>Ubicación</th>
-                  <th>Telefono</th>
-                  <th>Fecha Fundación</th>
-                  <th>Email</th>
-                  <th>Página Web</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for empresa in empresas %}
-                  {% if empresa.estado %}
-                  <tr>
-                    <td>{{ empresa.NIT }}</td>
-                    <td>{{ empresa.nombre }}</td>
-                    <td>{{ empresa.descripcion }}</td>
-                    <td>{{ empresa.ubicacion }}</td>
-                    <td>{{ empresa.telefono }}</td>
-                    <td>{{ empresa.fechaFundacion }}</td>
-                    <td>{{ empresa.email }}</td>
-                    <td>{{ empresa.paginaWeb }}</td>
-                    <td>
-                      <a href="actualizacionEmpresa/{{empresa.NIT}}" class="btn btn-primary btn-sm">Editar</a>
-                      <form action="inactivarEmpresa/{{empresa.NIT}}" method="POST" style="display: inline;">
-                        {% csrf_token %}
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-danger btn-sm ">Inactivar</button>
-                      </form>
-                    </td>
-                  </tr>
-                {% endif %}
-                {% empty %}
-                  <tr>
-                    <td colspan="9">No hay empresas registradas.</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-2jUg/vWWwLyOA6VTxmaETfzYJBY+nLgz4O9ysH4T22+iZTStVcTkJrMz8x7FvmAa2HzVrgajbNSsXsVfEymtww==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <!--pega un mapa de internet y coloca marcadores que hacen referencia a las empresas, las ubica aleatoreamente por coordenadas x y y-->
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloInicio.css' %}">
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Empresas</a>
+    <span class="navbar-text text-white d-flex align-items-center">Bienvenido Administrador</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <form class="d-flex position-relative ms-auto me-auto">
+        <button type="button" class="btn btn-outline-warning"><a class="no-underline text-white" href="{% url 'crear' %}">Crear
+            Empresa</a></button>
+      </form>
+      <a class="navbar-text text-white d-flex align-items-center" href="{% url 'logout' %}">Salir<i
+                class="bi bi-arrow-bar-left ms-1"></i></a>
     </div>
   </div>
-</div>
-{% endblock %}
-
-
-
-<!--pega un mapa de internet y coloca marcadores que hacen referencia a las empresas, las ubica aleatoreamente por coordenadas x y y-->
-  </head>
-  <body>
-    <h1>Mapa de Cali de empresas de software</h1>
-    <div id="map-container">
-      <img src="https://www.4umaps.com/topomaps/preview/274021463_SantiagodeCali_XL.jpg" alt="Mapa de Cali" id="map">
-      {% for empresa in empresa_coords %}
+</nav>
+  <div id="map-container">
+    <img src="https://www.4umaps.com/topomaps/preview/274021463_SantiagodeCali_XL.jpg" alt="Mapa de Cali" id="map">
+    {% for empresa in empresa_coords %}
         {% if empresa.estado %}
-      <div id="{{ empresa.NIT }}" class="marker marker-position"></div>
+    <div id="{{ empresa.NIT }}" class="marker marker-position"></div>
+  
+    <div id="{{ empresa.NIT }}-info" class="info-container">
+      <button id="cesar-sa-close" class="exit-button">&times;</button>
+  
+      <button class="edit-button" title="Editar">&#9998;</button>
+  
+      <button class="delete-button" title="Borrar">&#128465;</button>
+  
+      <h4 class="drawer-title">{{ empresa.nombre }}</h4>
+  
+      <h2 class="drawer-subtitulo">Acerca de:</h2>
 
-      <div id="{{ empresa.NIT }}-info" class="info-container">
-     
-        <h3>NIT  de la empresa: {{ empresa.NIT }}</h3>
-        <h3>nombre de la empresa: {{ empresa.nombre }}</h3>
-        <h3>email de la empresa: {{ empresa.email }}</h3>
-        
-        <h3>descripcion de la empresa: {{ empresa.descripcion }}</h3>
-        <h3>fecha de Fundacion de la empresa: {{ empresa.fechaFundacion }}</h3>
-        <h3>ubicacion de la empresa: {{ empresa.ubicacion }}</h3>
-        <h3>telefono de la empresa: {{ empresa.telefono }}</h3>
-        <h3>email de la empresa: {{ empresa.email }}</h3>
-        <h3>paginaWeb de la empresa: {{ empresa.paginaWeb }}</h3>
-        <button class="edit-button">Editar</button>
-        <button class="delete-button">Borrar</button>
+      <div class="drawer-content">
+        <h3>NIT: {{ empresa.NIT }}</h3>
       </div>
-      {% endif %}
-      {% endfor %}
+
+      <div class="drawer-content">
+        <h3>{{ empresa.descripcion }}</h3>
+      </div>
+
+      <div class="drawer-content">
+        <ul>
+          <li>Fundación: {{ empresa.fechaFundacion }}</li>
+          <li>Sede: {{ empresa.ubicacion }}</li>
+          <li>Contacto: {{ empresa.telefono }}</li>
+        </ul>
+      </div>
+  
+      <h2 class="drawer-subtitulo">Pagina oficial:</h2>
+  
+      <div class="drawer-pagina">
+        <h3 style="color: red;">{{ empresa.paginaWeb }}</h3>
+      </div>
+  
+      <h2 class="drawer-subtitulo">Personal:</h2>
+  
+      <div class="drawer-content">
+        <button class="btn btn-primary">Ver personal</button>
+      </div>
+  
     </div>
-  <!--crea scripts para las diferentes actiones de los marker mostrar informacion al dar click, colocar coordenadas,acciones de eliminar y inabilitar-->
-    <script>
-
-
-  window.addEventListener('load', function() {
-  var markers = document.querySelectorAll('.marker');
-  var infoContainers = document.querySelectorAll('.info-container');
-
-  markers.forEach(function(marker) {
-    var top = Math.floor(Math.random() * 100) + '%';
-    var left =  Math.floor(Math.random() * 100) + '%';
-    marker.style.top = top;
-    marker.style.left = left;
-
-    marker.addEventListener('click', function() {
-      var id = this.getAttribute('id');
-      var infoContainer = document.getElementById(id + '-info');
-
-      // Ocultar todos los contenedores de información
-      infoContainers.forEach(function(container) {
-        container.style.display = 'none';
-      });
-  var mapContainer = document.getElementById(id + '-info');
-mapContainer.addEventListener('click', function() {
-  // Ocultar todos los contenedores de información
-  infoContainers.forEach(function(container) {
-    container.style.display = 'none';
-  });
-});
-
-      // Mostrar el contenedor de información correspondiente
-      infoContainer.style.display = 'block';
-
-      // Agregar evento para el botón de editar
-      var editButton = infoContainer.querySelector('.edit-button');
-editButton.addEventListener('click', function() {
-  // Redirigir a la página de edición
-  window.location.href = "/actualizarEmpresa/" + id;
-});
-
-      // Agregar evento para el botón de borrar
-      var deleteButton = infoContainer.querySelector('.delete-button');
-deleteButton.addEventListener('click', function() {
-  // Mostrar una ventana emergente de confirmación
-  var confirmDelete = confirm("¿Desea inactivar esta empresa?");
-
-  // Si el usuario confirma, redirigir a la página de inactivación
-  if (confirmDelete) {
-    window.location.href = "/eliminarEmpresa/" + id;
-  }
-});
-
-
-    });
-  });
-});
-
-    </script>
-  <!--css de las tablas, marcadores,bordes,botones,lineas,divisores-->
-{% block styles %}
-<style>
-/* Estilos para la tabla */
-table {
-width: 100%;
-border-collapse: collapse;
-border-radius: 10px;
-overflow: hidden;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-table th,
-table td {
-padding: 12px;
-text-align: left;
-vertical-align: middle;
-}
-
-table th {
-background-color: #4e73df;
-color: #fff;
-text-transform: uppercase;
-letter-spacing: 0.05em;
-border-bottom: 3px solid #4e73df;
-border-top: none;
-}
-
-table td {
-border-bottom: 1px solid #ddd;
-}
-
-table td:first-child,
-table th:first-child {
-padding-left: 20px;
-border-left: none;
-}
-
-table td:last-child,
-table th:last-child {
-padding-right: 20px;
-border-right: none;
-}
-
-/* Estilos para los botones */
-.btn {
-display: inline-block;
-padding: 10px 20px;
-border-radius: 30px;
-text-align: center;
-text-transform: uppercase;
-font-weight: bold;
-letter-spacing: 0.05em;
-border: none;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-transition: all 0.2s ease-in-out;
-}
-
-.btn-primary {
-background-color: #4e73df;
-color: #fff;
-}
-
-.btn-danger {
-background-color: #e74a3b;
-color: #fff;
-}
-
-.btn-success {
-background-color: #1cc88a;
-color: #fff;
-}
-
-.btn:hover {
-transform: translateY(-2px);
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.btn:active {
-transform: translateY(0);
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilos para las sombras */
-.shadow {
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilos para las líneas divisoras */
-.divider {
-border-bottom: 1px solid #ddd;
-margin: 20px 0;
-}
-
-/* Estilos para los bordes circulares */
-.rounded {
-border-radius: 30px;
-}
-
-/* Estilos para los colores de las etiquetas */
-.label {
-display: inline-block;
-padding: 5px 10px;
-border-radius: 20px;
-text-transform: uppercase;
-font-size: 12px;
-font-weight: bold;
-letter-spacing: 0.05em;
-margin-right: 10px;
-}
-
-.label-primary {
-background-color: #4e73df;
-color: #fff;
-}
-
-.label-danger {
-background-color: #e74a3b;
-color: #fff;
-}
-
-.label-success {
-background-color: #1cc88a;
-color: #fff;
-}
-
-
-   #map-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-}
-
-#map {
-  width: 100%;
-  height: 100%;
-}
-
-.marker, .random-marker {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #ff0000;
-  opacity: 0.6;
-  transition: all 0.2s;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.marker:hover, .random-marker:hover {
-  width: 30px;
-  height: 30px;
-  opacity: 1;
-}
-
-.info-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 600px;
-  background-color: #fff;
-  color: #000;
-  padding: 20px;
-  font-size: 14px;
-  z-index: 20;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  display: none;
-}
-
-.info-container.visible {
-  display: block;
-}
-
-.info-container h3 {
-  margin: 0 0 5px 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #0080ff;
-}
-
-.info-container p {
-  margin: 0;
-  font-size: 14px;
-  color: #000;
-}
-
-.edit-button {
-  margin-right: 10px;
-  background-color: #0080ff;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.delete-button {
-  background-color: #f00;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.random-marker {
-  top: 35%;
-  left: 60%;
-}
-
-/* Añadir efecto hover a los botones */
-.edit-button:hover, .delete-button:hover {
-  opacity: 0.8;
-}
-
-</style>
-{% endblock %}
+  </div>
+    {% endif %}
+      {% endfor %}
+  </div>
+  {% load static %}
+  <script type="text/javascript" src="{% static 'javascript/acciones.js' %}"></script>
   </body>
-</html>
+  </html>
