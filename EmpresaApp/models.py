@@ -17,7 +17,7 @@ class Empresas(models.Model):
     NIT = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=500)
-    ubicacion = models.ForeignKey(Ciudades2, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ciudades2, on_delete=models.CASCADE) #DIRECCIÓN
     telefono = models.CharField(max_length=100)
     fechaFundacion = models.DateField()
     email = models.CharField(max_length=100)

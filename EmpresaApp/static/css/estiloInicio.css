@@ -1,4 +1,4 @@
-///Css de las tablas, marcadores,bordes,botones,lineas,divisores
+/*Css de las tablas, marcadores,bordes,botones,lineas,divisores*/
 
 btn-outline-warning a {
   text-decoration: none;
@@ -13,11 +13,12 @@ btn-outline-warning a {
 
   color: #000;
 }
+
 .drawer-content {
-font-size: 17px;
-color: #6A6868;
-padding-left: 2%;
-justify-content: space-around;
+  font-size: 17px;
+  color: #6A6868;
+  padding-left: 2%;
+  justify-content: space-around;
 }
 .drawer-pagina{
 font-size: 10px;
@@ -152,3 +153,4 @@ opacity: 0.8;
   cursor: pointer;
   font-size: 30px;
 }
+

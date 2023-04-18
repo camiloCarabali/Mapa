@@ -1,54 +1,52 @@
-/* Estilos para la tarjeta */
- .card {
-  width: 400px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  margin: 0 auto;
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.card {
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+    /*opacity: 0.6;*/
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    align-items: center;
 }
 
 .card-body {
-  padding: 20px;
+  padding: 2%;
+  text-align: left;
 }
 
-.text-center {
+h2{
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  color: #2b2a2a;
   text-align: center;
 }
 
-h2 {
-  font-family: Arial, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 30px;
-}
-
 label {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: #2b2a2a;
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
+  margin-top: 12%;
 }
 
 .form-control {
-  width: 100%;
+  width: 80%;
   height: 40px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border-radius: 18px;
+  border: 1px solid #000000;
+  background-color: #eeeded;
   padding: 10px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
-}
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: #7D6F6F;
+  }
 
 .form-control:focus {
   outline: none;
-  border: 1px solid #4e73df;
+  border: 1px solid #46A6FF;
 }
 
 .btn {
@@ -64,14 +62,35 @@ label {
   transition: all 0.2s ease-in-out;
 }
 
+
+.text-box{
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: #7D6F6F;
+  margin-right: 90px;
+}
+
+.form-control2 {
+  width: 80%;
+  height: 100px;
+  border-radius: 18px;
+  border: 1px solid #000000;
+  background-color: #eeeded;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: #7D6F6F;
+}
+
 .btn-primary {
-  background-color: #4e73df;
+  background-color: #46A6FF;
   color: #fff;
 }
 
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
 }
 
 .btn:active {
@@ -94,7 +113,7 @@ label {
 }
 
 .btn-primary {
-  background-color: #4e73df;
+  background-color: #46A6FF;
   color: #fff;
 }
 
@@ -147,7 +166,7 @@ label {
 }
 
 .label-primary {
-  background-color: #4e73df;
+  background-color: #46A6FF;
   color: #fff;
 }
 

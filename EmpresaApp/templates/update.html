@@ -1,5 +1,5 @@
 {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloActualizar.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloActualizarE.css' %}">
 {% block content %}
 <div style="text-align:center">
     <div style="display:inline-block">
@@ -7,20 +7,30 @@
             <div class="card-body">
                 <div class="text-center">
 
-                    <h2 class="card-title">Actualizar Empresa</h2>
+                    <h2 class="card-title">AQUÍ VA EL NOMBRE DE LA EMPRESA</h2>
                     <table>
                         <form method="POST" action="/actualizarEmpresa/{{empresa.NIT}}">
                             {% csrf_token %}
-                            <tr>
-                                <td><label>Nombre:</label></td>
+                            <div class="inputs-container" style="width: 50%;">
+                                <tr>
+                                <td><label>Nombre de la empresa:</label></td>
                                 <td><input type="text" class="form-control" id="nombre" name="nombre"
                                            value="{{ empresa.nombre }}"></td>
                             </tr>
                             <br>
                             <tr>
-                                <td><label>Descripción:</label></td>
-                                <td><input type="text" class="form-control" id="descripcion" name="descripcion"
+                                <td><label>Descripción de la empresa:</label></td>
+                                <td><input type="text" class="form-control2" id="descripcion" name="descripcion"
                                            value="{{ empresa.descripcion }}"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Logo de la empresa :</label></td>
+                                <td><input  class="text-box" type="file" id="logo" name="logo"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Especialidades de la empresa:</label></td>
+                                <td><input type="text" class="form-control" id="especialidades" name="especialidades"
+                                           value="{{ empresa.especialidades }}"></td>
                             </tr>
                             <br>
                             <tr>
@@ -30,16 +40,9 @@
                             </tr>
                             <br>
                             <tr>
-                                <td><label>Ubicación:</label></td>
-                                <td><select name="ubicacion" id="ubicacion" class="form-control">
-                                        {% for ciudad in ciudades %}
-                                            {% if ciudad.pk == empresa.ubicacion.pk %}
-                                                <option value="{{ ciudad.nombre }}" selected>{{ ciudad.nombre }}</option>
-                                            {% else %}
-                                                <option value="{{ ciudad.nombre }}">{{ ciudad.nombre }}</option>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </select>   </td>
+                                <td><label>Dirección de la Empresa:</label></td>
+                                <td><input type="text" class="form-control" id="direcion" name="direcion"
+                                          value="{{ empresa.direcion }}"></td>
                             </tr>
                             <br>
                             <tr>
@@ -48,7 +51,7 @@
                                            value="{{ empresa.telefono }}"></td>
                             </tr>
                             <tr>
-                                <td><label>email:</label></td>
+                                <td><label>Email:</label></td>
                                 <td><input type="text" class="form-control" id="email" name="email"
                                            value="{{ empresa.email }}"></td>
                             </tr>
@@ -58,7 +61,9 @@
                                 <td><input type="text" class="form-control" id="paginaWeb" name="paginaWeb"
                                            value="{{ empresa.paginaWeb }}"></td>
                             </tr>
-                            <tr>
+                            </div>
+
+                            <tr >
                                 <td></td>
                                 <td>
                                     <button type="submit" class="btn btn-primary">Actualizar</button>
