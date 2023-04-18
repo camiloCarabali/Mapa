@@ -1,0 +1,63 @@
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloCrearE.css' %}">
+
+{% block content %}
+<div style="text-align:center">
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="/crearEmpresa/">
+                    {% csrf_token %}
+                    <div class="card-body" style="display:flex; justify-content:space-between;">
+                        <div style="width: 45%;">
+                            <div class="form-group">
+                                <label>NIT de la empresa</label>
+                                <input type="number" name="NIT" id="NIT" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de la empresa</label>
+                                <input autocomplete="off" type="text" name="nombre" id="nombre" class="form-control" required>
+                            </div>
+                              <div class="form-group">
+                                <label>Misión de la empresa</label>
+                                <textarea autocomplete="off" type="text" rows="5" name="mision" id="mision" class="form-control" required></textarea>
+                            </div>
+                              <div class="form-group">
+                                <label>Visión de la empresa</label>
+                                <textarea autocomplete="off" type="text" name="vision" rows="5" id="vision" class="form-control" required></textarea>
+                            </div>
+
+                          <div class="form-group">
+                            <label>Link de la pagina Web de la empresa</label>
+                            <input autocomplete="off" type="text" name="paginaWeb" id="paginaWeb" class="form-control" required>
+                        </div>
+                          <div class="form-group">
+                            <label>Fecha de Fundación</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha"
+                                   max="{% now 'Y-m-d' %}">
+                        </div>
+                        </div>
+                        <div style="width: 45%;">
+                          <div class="form-group">
+                            <label>Descripción de la empresa</label>
+                            <textarea autocomplete="off" name="descripcion" id="descripcion" class="form-control2" required></textarea>
+                        </div>
+
+                            <div class="form-group">
+                                <label>email de la empresa</label>
+                                <input autocomplete="off" type="email" name="email" id="email" class="form-control" required>
+                            </div>
+                         
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align:right;">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,70 @@
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloActualizarE.css' %}">
+{% block content %}
+<div style="text-align:center">
+    <div style="display:inline-block">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+
+                    <h2 class="card-title">Aquí va el nombre de la empresa</h2>
+                    <table>
+                        <form method="POST" action="/actualizarEmpresa/{{empresa.NIT}}">
+                            {% csrf_token %}
+                            <tr>
+                                <td><label>Nombre:</label></td>
+                                <td><input type="text" class="form-control" id="nombre" name="nombre"
+                                           value="{{ empresa.nombre }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Misión:</label></td>
+                                <td><input type="text" class="form-control" id="mision" name="mision"
+                                           value="{{ empresa.mision }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Visión:</label></td>
+                                <td><input type="text" class="form-control" id="vision" name="vision"
+                                           value="{{ empresa.vision }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Descripción:</label></td>
+                                <td><input type="text" class="form-control" id="descripcion" name="descripcion"
+                                           value="{{ empresa.descripcion }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Fecha de fundación:</label></td>
+                                <td><input type="date" class="form-control" id="fecha" name="fecha"
+                                           max="{% now 'Y-m-d' %}" value="{{ empresa.fechaFundacion|date:"Y-m-d" }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Email:</label></td>
+                                <td><input type="text" class="form-control" id="email" name="email"
+                                           value="{{ empresa.email }}"></td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Página Web:</label></td>
+                                <td><input type="text" class="form-control" id="paginaWeb" name="paginaWeb"
+                                           value="{{ empresa.paginaWeb }}"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                </td>
+                            </tr>
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    {% endblock %}
+

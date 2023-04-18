@@ -21,57 +21,57 @@ btn-outline-warning a {
   justify-content: space-around;
 }
 .drawer-pagina{
-font-size: 10px;
-color: #ff0000;
-padding-left: 2%;
-justify-content: space-around;
+  font-size: 10px;
+  color: #ff0000;
+  padding-left: 2%;
+  justify-content: space-around;
 }
 .drawer-title {
-padding-left: 35%;
-font-size: 40px;
-color: #000;
+  padding-left: 35%;
+  font-size: 40px;
+  color: #000;
 }
 .drawer-subtitulo {
-padding-left: 2%;
-font-size: 25px;
-color: #000;
+  padding-left: 2%;
+  font-size: 25px;
+  color: #000;
 
 }
 .drawer-title{
-size: 50px;
+  size: 50px;
 }
  #map-container {
-position: relative;
-width: 100%;
-height: 100%;
-overflow: scroll;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
 }
 
 #map {
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .marker, .random-marker {
-position: absolute;
-width: 20px;
-height: 20px;
-border-radius: 50%;
-background-color: #ff0000;
-opacity: 0.6;
-transition: all 0.2s;
-cursor: pointer;
-z-index: 10;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  opacity: 0.6;
+  transition: all 0.2s;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .marker:hover, .random-marker:hover {
-width: 30px;
-height: 30px;
-opacity: 1;
+  width: 30px;
+  height: 30px;
+  opacity: 1;
 }
 
 .info-container {
-position: fixed;
+  position: fixed;
   top: 0;
   right: 0;
   display: none;
@@ -98,30 +98,30 @@ position: fixed;
 
 }
 .info-container.visible {
-display: block;
+  display: block;
 }
 
 .info-container h3 {
-margin: 0 0 5px 0;
-font-size: 16px;
-font-weight: bold;
-color: #6A6868;
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #6A6868;
 }
 
 .info-container p {
-margin: 0;
-font-size: 14px;
-color: #000;
+  margin: 0;
+  font-size: 14px;
+  color: #000;
 }
 
 .random-marker {
-top: 35%;
-left: 60%;
+  top: 35%;
+  left: 60%;
 }
 
 /* Añadir efecto hover a los botones */
 .edit-button:hover, .delete-button:hover {
-opacity: 0.8;
+  opacity: 0.8;
 }
 .edit-button {
   color: rgb(0, 0, 0)000;
