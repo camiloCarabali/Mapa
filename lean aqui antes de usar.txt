@@ -1,7 +1,5 @@
-Cambios: Cambio el modelo de la tabla empresa, se agrego las sedes
-a la hora de mostrar NO muestrn las empresas, muestren las sedes,
+Cambios: Cambio el modelo de la tabla empresa, se agrego las sedes,
+a la hora de mostrar NO muestren las empresas, muestren las sedes,
 todos los html que terminen en sede sepueden borrar o modificar se creo
 para base a la hora de hacer el front
-
-Errores: error en el actualizar sede (se esta corrigiendo)
 
