@@ -1,0 +1,63 @@
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloCrear.css' %}">
+
+{% block content %}
+<div style="text-align:center">
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <div class="card" style="width:800px;">
+            <div class="card-body">
+                <div class="text-center">
+                    <h2>Crear Sede</h2>
+                </div>
+
+                <form method="POST" action="/crearSede/">
+                    {% csrf_token %}
+                    <div class="card-body" style="display:flex; justify-content:space-between;">
+                        <div style="width: 45%;">
+                            <div class="form-group">
+                              <label>Seleccione la empresa</label>
+                              <select name="empresa" id="empresa" class="form-control">
+                                 {% for empresa in empresas %}
+                                  {% if empresa.estado%}
+                                 <option value="{{ empresa.nombre }}">{{ empresa.nombre }}</option>
+                                  {%endif%}
+                                 {% endfor %}
+                             </select>
+                          </div>
+                            <div class="form-group">
+                                <label>Nombre de la sede</label>
+                                <input autocomplete="off" type="text" name="nombre" id="nombre" class="form-control" required>
+                            </div>
+
+                          <div class="form-group">
+                            <label>Telefono de la sede</label>
+                            <input autocomplete="off" type="number" name="telefono" id="telefono" class="form-control" required>
+                          </div>
+                        </div>
+                        <div style="width: 45%;">
+                          <div class="form-group">
+                                <label>Direccion de la sede</label>
+                                <input autocomplete="off" type="text" name="direccion" id="direccion" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                              <label>Ciudad de la sede</label>
+                              <select name="municipio" id="municipio" class="form-control">
+                                 {% for ciudad in ciudades %}
+                                 <option value="{{ ciudad.nombre }}">{{ ciudad.nombre }}</option>
+                                 {% endfor %}
+                             </select>
+                          </div>
+                         
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align:right;">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

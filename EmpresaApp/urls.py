@@ -14,4 +14,10 @@ urlpatterns = [
     path('actualizacionEmpresa/<NIT>', views.actualizacionEmpresa),
     path('actualizarEmpresa/<NIT>', views.actualizarEmpresa),
     path('inactivarEmpresa/<NIT>', views.inactivarEmpresa),
+    path('sede/', views.mostrarSede, name='sede'),
+    path('creacionSede/', views.creacionSede, name='crearsede'),
+    path('crearSede/', views.crearSede),
+    path('actualizacionSede/<nombre>', views.actualizacionSede),
+    path('actualizarSede/<nombre>', views.actualizarSede),
+    path('inactivarSede/<nombre>', views.inactivarSede),
 ]
