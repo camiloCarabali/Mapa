@@ -16,9 +16,9 @@ class Ciudades2(models.Model):
 class Empresas(models.Model):
     NIT = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=100)
+    mision = models.CharField(max_length=500)
+    vision = models.CharField(max_length=500)
     descripcion = models.CharField(max_length=500)
-    ubicacion = models.ForeignKey(Ciudades2, on_delete=models.CASCADE)
-    telefono = models.CharField(max_length=100)
     fechaFundacion = models.DateField()
     email = models.CharField(max_length=100)
     paginaWeb = models.CharField(max_length=500)
@@ -26,6 +26,18 @@ class Empresas(models.Model):
 
     class Meta:
         db_table = 'Empresas'
+
+class Sedes(models.Model):
+    _id = models.ObjectIdField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=100)
+    direccion = models.CharField(max_length=100)
+    empresa = models.ForeignKey(Empresas, on_delete=models.CASCADE)
+    municipio = models.ForeignKey(Ciudades2, on_delete=models.CASCADE)
+    estado = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = 'Sedes'
 
 
 class CustomUserManager(BaseUserManager):

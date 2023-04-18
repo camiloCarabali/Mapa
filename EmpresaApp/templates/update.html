@@ -18,6 +18,18 @@
                             </tr>
                             <br>
                             <tr>
+                                <td><label>Misión:</label></td>
+                                <td><input type="text" class="form-control" id="mision" name="mision"
+                                           value="{{ empresa.mision }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Visión:</label></td>
+                                <td><input type="text" class="form-control" id="vision" name="vision"
+                                           value="{{ empresa.vision }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
                                 <td><label>Descripción:</label></td>
                                 <td><input type="text" class="form-control" id="descripcion" name="descripcion"
                                            value="{{ empresa.descripcion }}"></td>
@@ -29,24 +41,6 @@
                                            max="{% now 'Y-m-d' %}" value="{{ empresa.fechaFundacion|date:"Y-m-d" }}"></td>
                             </tr>
                             <br>
-                            <tr>
-                                <td><label>Ubicación:</label></td>
-                                <td><select name="ubicacion" id="ubicacion" class="form-control">
-                                        {% for ciudad in ciudades %}
-                                            {% if ciudad.pk == empresa.ubicacion.pk %}
-                                                <option value="{{ ciudad.nombre }}" selected>{{ ciudad.nombre }}</option>
-                                            {% else %}
-                                                <option value="{{ ciudad.nombre }}">{{ ciudad.nombre }}</option>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </select>   </td>
-                            </tr>
-                            <br>
-                            <tr>
-                                <td><label>Telefono:</label></td>
-                                <td><input type="text" class="form-control" id="telefono" name="telefono"
-                                           value="{{ empresa.telefono }}"></td>
-                            </tr>
                             <tr>
                                 <td><label>email:</label></td>
                                 <td><input type="text" class="form-control" id="email" name="email"

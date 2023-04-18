@@ -1,0 +1,74 @@
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloActualizar.css' %}">
+{% block content %}
+<div style="text-align:center">
+    <div style="display:inline-block">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+
+                    <h2 class="card-title">Actualizar Sede</h2>
+                    <table>
+                        <form method="POST" action="/actualizarSede/{{sede.nombre}  }">
+                            {% csrf_token %}
+                            <tr>
+                                <td><label>Empresa:</label></td>
+                                <td><select name="empresa" id="empresa" class="form-control">
+                                        {% for empresa in empresas %}
+                                            {% if empresa.estado%}
+                                            {% if empresa.pk == sede.empresa.pk %}
+                                                <option value="{{ empresa.nombre }}" selected>{{ empresa.nombre }}</option>
+                                            {% else %}
+                                                <option value="{{ empresa.nombre }}">{{ empresa.nombre }}</option>
+                                            {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>   </td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Nombre:</label></td>
+                                <td><input type="text" class="form-control" id="nombre" name="nombre"
+                                           value="{{ sede.nombre }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Telefono:</label></td>
+                                <td><input type="number" class="form-control" id="telefono" name="telefono"
+                                           value="{{ sede.telefono }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Dirección:</label></td>
+                                <td><input type="text" class="form-control" id="direccion" name="direccion"
+                                           value="{{ sede.direccion }}"></td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><label>Ciudad:</label></td>
+                                <td><select name="municipio" id="municipio" class="form-control">
+                                        {% for ciudad in ciudades %}
+                                            {% if ciudad.pk == sede.municipio.pk %}
+                                                <option value="{{ ciudad.nombre }}" selected>{{ ciudad.nombre }}</option>
+                                            {% else %}
+                                                <option value="{{ ciudad.nombre }}">{{ ciudad.nombre }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>   </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                </td>
+                            </tr>
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    {% endblock %}
+
