@@ -153,9 +153,9 @@ def actualizarEmpresa(request, NIT):
     return redirect('empresa')
 
 
-def actualizarSede(request, nombreSede):
+def actualizarSede(request, nombre):
     empresa = request.POST['empresa']
-    #nombre = request.POST['nombre']
+    valor = request.POST['nombre']
     telefono = request.POST['telefono']
     direccion = request.POST['direccion']
     municipio = request.POST['municipio']
@@ -163,8 +163,8 @@ def actualizarSede(request, nombreSede):
     ciudad = Ciudades2.objects.get(nombre=municipio)
     principal = Empresas.objects.get(nombre=empresa)
 
-    sede = Sedes.objects.get(sede=nombreSede)
-    sede.nombre = nombreSede
+    sede = Sedes.objects.get(nombre=nombre)
+    sede.nombre = valor
     sede.empresa = principal
     sede.telefono = telefono
     sede.direccion = direccion
