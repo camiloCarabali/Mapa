@@ -10,6 +10,7 @@
   <!--pega un mapa de internet y coloca marcadores que hacen referencia a las empresas, las ubica aleatoreamente por coordenadas x y y-->
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/estiloInicio.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloInfoE.css' %}">
 </head>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> 
@@ -23,8 +24,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <form class="d-flex position-relative ms-auto me-auto">
-        <button type="button" class="btn btn-outline-mb-3"><a class="no-underline text-white" href="{% url 'crear' %}">Crear
-            Empresa</a></button>
+        <a class="no-underline text-white" href="{% url 'crear' %}">Crear
+            Empresa</a>
       </form>
       <a class="navbar-text text-white d-flex align-items-center" href="{% url 'logout' %}">Salir<i
                 class="bi bi-arrow-bar-left ms-1"></i></a>
@@ -49,19 +50,19 @@
       <h2 class="drawer-subtitulo">Acerca de:</h2>
 
       <div class="drawer-content">
-        <h3>NIT: {{ empresa.NIT }}</h3>
+        <p>NIT: {{ empresa.NIT }}</p>
       </div>
 
       <div class="drawer-content">
-        <h3>MISIÓN: {{ empresa.mision }}</h3>
+        <p>MISIÓN: {{ empresa.mision }}</p>
       </div>
 
       <div class="drawer-content">
-        <h3>VISIÓN: {{ empresa.vision }}</h3>
+        <p>VISIÓN: {{ empresa.vision }}</p>
       </div>
 
       <div class="drawer-content">
-        <h3>{{ empresa.descripcion }}</h3>
+        <p>{{ empresa.descripcion }}</p>
       </div>
 
       <div class="drawer-content">
@@ -73,7 +74,7 @@
       <h2 class="drawer-subtitulo">Pagina oficial:</h2>
   
       <div class="drawer-pagina">
-        <h3 style="color: red;">{{ empresa.paginaWeb }}</h3>
+        <p class="color-web">{{ empresa.paginaWeb }}</p>
       </div>
   
       <h2 class="drawer-subtitulo">Personal:</h2>

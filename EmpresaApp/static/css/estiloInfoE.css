@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+.info-container{
+    padding: 2%;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    
+}
+
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+    margin-left: 30%;
+}
+
+.btn-primary {
+    background-color: #46A6FF;
+    color: #fff;
+}
+
+.drawer-content{
+    font-size: 1px;
+    color: #6A6868;
+}
+
+.drawer-pagina .color-web{
+    color: #E7A2A2;
+}

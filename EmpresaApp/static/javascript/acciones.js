@@ -17,6 +17,7 @@ markers.forEach(function(marker) {
     infoContainers.forEach(function(container) {
       container.style.display = 'none';
     });
+    
 var mapContainer = document.getElementById(id + '-info');
 mapContainer.addEventListener('click', function() {
 // Ocultar todos los contenedores de información
