@@ -36,6 +36,7 @@
     <img src="https://www.4umaps.com/topomaps/preview/274021463_SantiagodeCali_XL.jpg" alt="Mapa de Cali" id="map">
     {% for empresa in empresa_coords %}
         {% if empresa.estado %}
+
     <div id="{{ empresa.NIT }}" class="marker marker-position"></div>
   
     <div id="{{ empresa.NIT }}-info" class="info-container">
@@ -50,31 +51,41 @@
       <h2 class="drawer-subtitulo">Acerca de:</h2>
 
       <div class="drawer-content">
-        <p>NIT: {{ empresa.NIT }}</p>
+        <p>DESCRIPCIÓN: {{ empresa.descripcion }}</p>
       </div>
 
       <div class="drawer-content">
-        <p>MISIÓN: {{ empresa.mision }}</p>
+          <P>* FECHA DE FUNDACIÓN: {{ empresa.fechaFundacion }}</P>
       </div>
 
       <div class="drawer-content">
-        <p>VISIÓN: {{ empresa.vision }}</p>
+        <p>* NIT: {{ empresa.NIT }}</p>
       </div>
 
       <div class="drawer-content">
-        <p>{{ empresa.descripcion }}</p>
+        <p>* SEDE: {{ sede.direccion }}</p>
       </div>
 
       <div class="drawer-content">
-        <ul>
-          <li>Fundación: {{ empresa.fechaFundacion }}</li>
-        </ul>
+        <p>* MISIÓN: {{ empresa.mision }}</p>
+      </div>
+
+      <div class="drawer-content">
+        <p>* VISIÓN: {{ empresa.vision }}</p>
+      </div>
+
+      <div class="drawer-content">
+        <p>* CONTACTO: {{ empresa.email }}</p>
+      </div>
+
+      <div class="drawer-content">
+        <p>* ESPECIALIDADES Y SERVICIOS DE LA EMPRESA: ESTA OPCIÓN AÚN NO ESTA DISPONIBLE</p>
       </div>
   
       <h2 class="drawer-subtitulo">Pagina oficial:</h2>
   
       <div class="drawer-pagina">
-        <p class="color-web">{{ empresa.paginaWeb }}</p>
+        <a  href="#" class="color-web">{{ empresa.paginaWeb }}</a>
       </div>
   
       <h2 class="drawer-subtitulo">Personal:</h2>
